@@ -9,14 +9,14 @@ import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
 
-webapp = Flask(__name__)
+app = Flask(__name__)
 model = pickle.load(open('weather.pkl', 'rb'))
 
-@webapp.route('/')
+@app.route('/')
 def home():
     return render_template('index.html')
 
-@webapp.route('/predict',methods=['POST'])
+@app.route('/predict',methods=['POST'])
 def predict():
     '''
     For rendering results on HTML GUI
@@ -31,4 +31,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    webapp.run(debug=True)
+    app.run(debug=True)
