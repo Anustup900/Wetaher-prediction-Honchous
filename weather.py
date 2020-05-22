@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import pickle
 
-dataset = pd.read_csv(r"C:\Users\Anustup\Desktop\weather.csv")
+dataset = pd.read_csv('weather.csv')
 
 dataset['temperature'].fillna(0, inplace=True)
 
