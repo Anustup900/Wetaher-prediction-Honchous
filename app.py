@@ -4,17 +4,31 @@ Created on Fri May 22 18:35:55 2020
 
 @author: Anustup
 """
+#partly cloudy = 1
+#mostly cloudy =2
+#overcast=3
+#foggy =4
+#Breezy and 2=5
+#clear=6
+#Breezy and 3=7
+#Humid and 2=8
+#Windy and 4=9
+#Humid and 1=10
+#Windy and 3=11
+#Breezy and 4=12
+#Breezy and 1=13
+#Windy and 1=14
 
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
 
-app = Flask(__name__)
+webapp = Flask(__name__)
 model = pickle.load(open('weather.pkl', 'rb'))
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('file.html')
 
 @app.route('/predict',methods=['POST'])
 def predict():
@@ -27,8 +41,15 @@ def predict():
 
     output = round(prediction[0], 2)
 
-    return render_template('index.html', prediction_text='Predicted weather will be $ {}'.format(output))
+    return render_template('file.html', prediction_text='Predicted weather will be {}'.format(output))
+@app.route('/results',methods=['POST'])
+def results():
 
+    data = request.get_json(force=True)
+    prediction = model.predict([np.array(list(data.values()))])
+
+    output = prediction[0]
+    return jsonify(output)
 
 if __name__ == "__main__":
     app.run(debug=True)
