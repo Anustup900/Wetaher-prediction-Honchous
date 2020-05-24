@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Predict weather Analysis</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="text" name="Temperature (C)" placeholder="Temperature (C)" required="required" />
+        <input type="text" name="Humidity" placeholder="Humidity" required="required" />
+		<input type="text" name="Pressure (millibars)" placeholder="Pressure (millibars)" required="required" />
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   #partly cloudy = 1<br>
+#mostly cloudy =2<br>
+#overcast=3<br>
+#foggy =4<br>
+#Breezy and 2=5<br>
+#clear=6<br>
+#Breezy and 3=7<br>
+#Humid and 2=8<br>
+#Windy and 4=9<br>
+#Humid and 1=10<br>
+#Windy and 3=11<br>
+#Breezy and 4=12<br>
+#Breezy and 1=13<br>
+#Windy and 1=14
+
+ </div>
+
+
+</body>
+</html>
