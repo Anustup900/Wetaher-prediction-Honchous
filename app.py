@@ -28,7 +28,7 @@ model = pickle.load(open('weather.pkl', 'rb'))
 
 @app.route('/')
 def home():
-    return render_template('file.html')
+    return render_template('index.html')
 
 @app.route('/predict',methods=['POST'])
 def predict():
@@ -41,15 +41,9 @@ def predict():
 
     output = round(prediction[0], 2)
 
-    return render_template('file.html', prediction_text='Predicted weather will be {}'.format(output))
-@app.route('/results',methods=['POST'])
-def results():
+    return render_template('index.html', prediction_text='Predicted weather will be {}'.format(output))
 
-    data = request.get_json(force=True)
-    prediction = model.predict([np.array(list(data.values()))])
 
-    output = prediction[0]
-    return jsonify(output)
 
 if __name__ == "__main__":
     app.run(debug=True)
